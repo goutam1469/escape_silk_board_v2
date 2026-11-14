@@ -36,7 +36,7 @@ with gr.Blocks(title="Escape Silk Board") as demo:
     gr.Markdown("# ✈️ Escape Silk Board")
     state = gr.State()
     status = gr.Markdown()
-    chat = gr.Chatbot(type="messages", height=450)
+    chat = gr.Chatbot(height=450)
     box = gr.Textbox(placeholder="What do you want to do?", show_label=False)
     restart = gr.Button("New game")
 
