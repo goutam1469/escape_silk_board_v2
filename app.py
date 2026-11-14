@@ -6,6 +6,16 @@ try:
 except ModuleNotFoundError:
     from app.services.game_engine import create_game, play_turn
 
+try:
+    import spaces
+
+    @spaces.GPU
+    def _gpu_placeholder():
+        # Never called. Only exists so ZeroGPU finds a @spaces.GPU function at startup.
+        return None
+except ImportError:
+    pass  # running locally without the spaces package
+
 INTRO = "You are standing at Silk Board. Your flight leaves in 60 minutes."
 
 def hud(s) -> str:
