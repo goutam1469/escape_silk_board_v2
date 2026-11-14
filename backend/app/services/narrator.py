@@ -34,7 +34,7 @@ def narrate(action: str, outcome: dict, state) -> str:
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM,
                 temperature=0.9,
-                max_output_tokens=300,
+                max_output_tokens=2048,
             ),
         )
         return resp.text
