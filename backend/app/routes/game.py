@@ -1,15 +1,21 @@
 from fastapi import APIRouter
 
 try:
-    from app.models.requests import MoveRequest
-    from app.services.game_engine import create_game, get_game
-    from app.services.judge import judge_action
-    from app.services.narrator import narrate
+    from backend.app.models.requests import MoveRequest
+    from backend.app.services.game_engine import create_game, get_game
+    from backend.app.services.judge import judge_action
+    from backend.app.services.narrator import narrate
 except ModuleNotFoundError:
-    from models.requests import MoveRequest
-    from services.game_engine import create_game, get_game
-    from services.judge import judge_action
-    from services.narrator import narrate
+    try:
+        from app.models.requests import MoveRequest
+        from app.services.game_engine import create_game, get_game
+        from app.services.judge import judge_action
+        from app.services.narrator import narrate
+    except ModuleNotFoundError:
+        from models.requests import MoveRequest
+        from services.game_engine import create_game, get_game
+        from services.judge import judge_action
+        from services.narrator import narrate
 
 router = APIRouter()
 

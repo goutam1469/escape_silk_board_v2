@@ -1,6 +1,10 @@
 import os
 import gradio as gr
-from services.game_engine import create_game, play_turn
+
+try:
+    from backend.app.services.game_engine import create_game, play_turn
+except ModuleNotFoundError:
+    from app.services.game_engine import create_game, play_turn
 
 INTRO = "You are standing at Silk Board. Your flight leaves in 60 minutes."
 

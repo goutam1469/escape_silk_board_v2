@@ -1,9 +1,12 @@
 from google.genai import types
 
 try:
-    from app.services.llm import client, MODEL
+    from backend.app.services.llm import client, MODEL
 except ModuleNotFoundError:
-    from services.llm import client, MODEL
+    try:
+        from app.services.llm import client, MODEL
+    except ModuleNotFoundError:
+        from services.llm import client, MODEL
 
 SYSTEM = """You narrate a comedic, slightly sarcastic text game set in Bengaluru traffic.
 Write 2-3 vivid sentences describing what just happened. Stay consistent with the facts

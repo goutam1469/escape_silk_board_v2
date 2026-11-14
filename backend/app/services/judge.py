@@ -3,9 +3,12 @@ from google.genai import types
 import traceback
 
 try:
-    from app.services.llm import client, MODEL
+    from backend.app.services.llm import client, MODEL
 except ModuleNotFoundError:
-    from services.llm import client, MODEL
+    try:
+        from app.services.llm import client, MODEL
+    except ModuleNotFoundError:
+        from services.llm import client, MODEL
 
 class Outcome(BaseModel):
     plausible: bool
