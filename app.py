@@ -16,9 +16,10 @@ except ImportError:
 INTRO = "You are standing at Silk Board. Your flight leaves in 60 minutes."
 
 def hud(s) -> str:
-    if not s.game_over:
-        return ""
-    return "### ✈️ You made your flight!" if s.outcome == "won" else "### ❌ You missed your flight."
+    banner = ""
+    if s.game_over:
+        banner = "\n\n### ✈️ ..."   # only when the game is over
+    return f"**{stats_line(s)}**{banner}"   # stats always, banner only at the end
 
 def new_game():
     s = create_game()
