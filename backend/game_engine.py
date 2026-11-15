@@ -1,6 +1,6 @@
-from state import GameState
-from judge import judge_action
-from narrator import narrate
+from backend.state import GameState
+from backend.judge import judge_action
+from backend.narrator import narrate
 
 def create_game() -> GameState:
     return GameState(

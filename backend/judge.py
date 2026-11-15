@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from google.genai import types
 import traceback
-from llm import client, MODEL
+from backend.llm import client, MODEL
 
 
 class Outcome(BaseModel):
@@ -37,7 +37,7 @@ def judge_action(action: str, state) -> dict:
     if client is None:
         return {
             **FALLBACK,
-            "reason": "Gemini API key is not configured. Set GEMINI_API_KEY in your environment or .env to enable judging.",
+            "reason": "Gemini API key is not configured. Set GEMINI_API_KEY to enable judging.",
         }
 
     prompt = (
