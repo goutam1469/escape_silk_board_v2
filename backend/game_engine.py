@@ -26,6 +26,12 @@ def apply_outcome(state: GameState, o: dict) -> None:
             state.inventory.remove(item)
     state.inventory += o["items_gained"]
 
+def stats_line(s: GameState) -> str:
+    return (
+        f"Remaining Balance : ₹{s.money} . Remaining Battery : {s.battery}/4 ."
+        f"Distance to airport : {s.distance_to_airport:.1f} km . Time Left : {max(0,s.time_remaining)} min"
+    )
+
 def check_game_over(state: GameState) -> None:
     if state.distance_to_airport <= 0 and state.time_remaining > 0:
         state.game_over, state.outcome = True, "won"
@@ -39,4 +45,4 @@ def play_turn(state: GameState, action: str) -> str:
     outcome = judge_action(action, state)
     apply_outcome(state, outcome)
     check_game_over(state)
-    return narrate(action, outcome, state)
+    return f"{narrate(action, outcome, state)} \n\n {stats_line(state)}"

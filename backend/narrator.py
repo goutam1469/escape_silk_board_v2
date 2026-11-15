@@ -2,10 +2,9 @@ from google.genai import types
 from backend.llm import client, MODEL
 
 
-SYSTEM = """You narrate a comedic, slightly sarcastic text game set in Bengaluru traffic.
-Write 2-3 vivid sentences describing what just happened. Stay consistent with the facts
-given (money, time, distance). Do not invent different numbers. If the game is over,
-say whether the player made the flight or missed it. No bullet points."""
+SYSTEM = """You narrate a comedic, sarcastic text game set in Bengaluru traffic.
+Write ONE short sarcastic sentence (max 20 words) about what just happened.
+Do not mention numbers. If the game is over, say whether the player made the flight or missed it."""
 
 def narrate(action: str, outcome: dict, state) -> str:
     if client is None:
@@ -18,7 +17,6 @@ def narrate(action: str, outcome: dict, state) -> str:
     prompt = (
         f"Player action: {action!r}\n"
         f"What happened: {outcome['reason']} (plausible={outcome['plausible']})\n"
-        f"State after: ₹{state.money}, {state.distance_to_airport:.1f} km left, "
         f"{state.time_remaining} min left. Status: {result}"
     )
     try:

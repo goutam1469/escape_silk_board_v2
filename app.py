@@ -1,10 +1,7 @@
 import os
 import gradio as gr
+from backend.game_engine import create_game, play_turn
 
-try:
-    from backend.app.services.game_engine import create_game, play_turn
-except ModuleNotFoundError:
-    from app.services.game_engine import create_game, play_turn
 
 try:
     import spaces
@@ -19,14 +16,9 @@ except ImportError:
 INTRO = "You are standing at Silk Board. Your flight leaves in 60 minutes."
 
 def hud(s) -> str:
-    banner = ""
-    if s.game_over:
-        banner = "\n\n### ✈️ You made your flight!" if s.outcome == "won" else "\n\n### ❌ You missed your flight."
-    return (
-        f"💰 ₹{s.money} &nbsp; 🔋 {s.battery}/4 &nbsp; "
-        f"🛣 {s.distance_to_airport:.1f} km &nbsp; ⏰ {s.time_remaining} min"
-        f"{banner}"
-    )
+    if not s.game_over:
+        return ""
+    return "### ✈️ You made your flight!" if s.outcome == "won" else "### ❌ You missed your flight."
 
 def new_game():
     s = create_game()
