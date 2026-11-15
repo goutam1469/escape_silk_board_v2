@@ -10,5 +10,5 @@ class GameState(BaseModel):
     game_over: bool = False
     outcome: str | None = None          # "won" or "lost"
     started: bool = False               # loadout chosen?
-    item_nodes: dict[str, str] = {}     # item -> short note
+    item_notes: dict[str, str] = {}     # item -> short note
     item_burden: dict[str, int] = {}    # item -> 0..3
