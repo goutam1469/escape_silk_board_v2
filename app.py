@@ -1,6 +1,6 @@
 import os
 import gradio as gr
-from backend.game_engine import create_game, play_turn
+from backend.game_engine import create_game, play_turn, stats_line
 
 
 try:
