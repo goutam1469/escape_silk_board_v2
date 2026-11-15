@@ -40,10 +40,15 @@ def judge_action(action: str, state) -> dict:
             "reason": "Gemini API key is not configured. Set GEMINI_API_KEY to enable judging.",
         }
 
+    _inventory_text = ", ".join(
+        f"{n} ({state.item_notes.get(n, '')})" if state.item_notes.get(n) else n
+        for n in state.inventory
+    ) or "nothing"
+
     prompt = (
         f"Current state: money=₹{state.money}, battery={state.battery}/4, "
         f"distance={state.distance_to_airport:.1f} km, time left={state.time_remaining} min, "
-        f"inventory={[f'{n} ({state.item_notes.get(n, '')})' for n in state.inventory]}"
+        f"inventory: {_inventory_text}.\n\nPlayer action: {action!r}"
     )
     try:
         resp = client.models.generate_content(
