@@ -1,14 +1,8 @@
 from pydantic import BaseModel
 from google.genai import types
 import traceback
+from llm import client, MODEL
 
-try:
-    from backend.app.services.llm import client, MODEL
-except ModuleNotFoundError:
-    try:
-        from app.services.llm import client, MODEL
-    except ModuleNotFoundError:
-        from services.llm import client, MODEL
 
 class Outcome(BaseModel):
     plausible: bool

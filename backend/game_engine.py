@@ -1,16 +1,6 @@
-try:
-    from backend.app.models.state import GameState
-    from backend.app.services.judge import judge_action
-    from backend.app.services.narrator import narrate
-except ModuleNotFoundError:
-    try:
-        from app.models.state import GameState
-        from app.services.judge import judge_action
-        from app.services.narrator import narrate
-    except ModuleNotFoundError:
-        from models.state import GameState
-        from services.judge import judge_action
-        from services.narrator import narrate
+from state import GameState
+from judge import judge_action
+from narrator import narrate
 
 def create_game() -> GameState:
     return GameState(
