@@ -13,7 +13,8 @@ try:
 except ImportError:
     pass  # running locally without the spaces package
 
-INTRO = "You are standing at Silk Board. Your flight leaves in 60 minutes."
+INTRO = ("You are standing at Silk Board. Your flight leaves in 60 minutes.\n\n"
+         "Before you set off, you can pack up to 3 items. What do you take? (or say 'nothing')")
 
 def hud(s) -> str:
     banner = ""

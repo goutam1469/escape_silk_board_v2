@@ -43,7 +43,7 @@ def judge_action(action: str, state) -> dict:
     prompt = (
         f"Current state: money=₹{state.money}, battery={state.battery}/4, "
         f"distance={state.distance_to_airport:.1f} km, time left={state.time_remaining} min, "
-        f"inventory={state.inventory}.\n\nPlayer action: {action!r}"
+        f"inventory={[f'{n} ({state.item_notes.get(n, '')})' for n in state.inventory]}"
     )
     try:
         resp = client.models.generate_content(
