@@ -26,12 +26,10 @@ def _split(text: str)-> list[str]:
     return [p.strip() for p in parts if p.strip()][:3]
 
 def _fallback(names):
-    return [{
-        "name": n,
-        "accepted": True,
-        "burden": 0,
-        "note": ""
-    }]
+    result = []
+    for n in names:
+        result.append({"name": n, "accepted": True, "burden": 0, "note": ""})
+    return result
 
 def evaluate_loadout(text: str) -> list[dict]:
     names = _split(text)
